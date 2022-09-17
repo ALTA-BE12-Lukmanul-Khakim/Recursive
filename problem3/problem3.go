@@ -14,23 +14,34 @@ func isPrime(n int) bool {
 	return true
 }
 
-func prismaSegiEmpat(wide, high, start int) string {
-	//var k int
-	var res string
-	for i := 0; i <= high; i++ {
-		for j := 0; j <= wide; j++ {
-			start++
-			if isPrime(start) == true {
-				res = res + fmt.Sprintf("%d", start)
-			}
+// func listPrime (n int) [] int{
 
+// }
+
+func PrismaSegiEmpat(wide, high, start int) string {
+	var res string
+	var k, sum int
+	primeArr := []int{}
+	var n = wide * high
+	for n > 0 {
+		start++
+		if isPrime(start) == true {
+			primeArr = append(primeArr, start)
+			n--
+		}
+	}
+	for i := 0; i < high; i++ {
+		for j := 0; j < wide; j++ {
+			k++
+			res += fmt.Sprintf("%d ", primeArr[k-1])
+			sum += primeArr[k-1]
 		}
 		res = res + "\n"
 	}
-	return res
+	return res + fmt.Sprintf("%d", sum)
 }
 
 func main() {
-	fmt.Println(prismaSegiEmpat(2, 3, 13))
-	//fmt.Println(prismaSegiEmpat(2, 3, 13))
+	fmt.Println(PrismaSegiEmpat(2, 3, 13))
+	fmt.Println(PrismaSegiEmpat(5, 2, 1))
 }

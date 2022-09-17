@@ -3,15 +3,19 @@ package main
 import "fmt"
 
 func MaxSequence(arr []int) int {
-	var sum, res, small int
-	small = int(arr[0])
+	var res int
+	//min := 0
+	sSum := 0
+
 	for i := 0; i < len(arr); i++ {
-		sum += int(arr[i])
-		if small > int(arr[i]) {
-			small = int(arr[i])
+		sSum = sSum + arr[i]
+		if res < sSum {
+			res = sSum
+		}
+		if sSum < 0 {
+			sSum = 0
 		}
 	}
-	res = sum + small
 	return res
 }
 
